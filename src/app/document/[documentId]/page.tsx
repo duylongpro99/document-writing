@@ -8,7 +8,7 @@ const Page: React.FC<Props> = async ({ params }) => {
   const { documentId } = await params;
 
   return (
-    <div className="min-h-screen bg-[#fafbfd]">
+    <div className="min-h-screen bg-[#090d16]">
       <Toolbar />
       <Editor />
     </div>
