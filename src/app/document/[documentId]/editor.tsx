@@ -2,6 +2,15 @@
 
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import TaskItem from "@tiptap/extension-task-item";
+import TaskList from "@tiptap/extension-task-list";
+import Table from "@tiptap/extension-table";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
+import TableRow from "@tiptap/extension-table-row";
+import Image from "@tiptap/extension-image";
+import ResizeImage from "tiptap-extension-resize-image";
+import { Toolbar } from "./(toolbar)/toolbar";
 
 export const Editor: React.FC = () => {
   const editor = useEditor({
@@ -12,8 +21,20 @@ export const Editor: React.FC = () => {
           "focus:outline-none print:border-0 bg-white  border-[#c7c7c7] flex flex-col min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text",
       },
     },
-    extensions: [StarterKit],
-    content: "<p>Hello World! 🌎️</p>",
+    extensions: [
+      StarterKit,
+      TaskList,
+      TaskItem.configure({
+        nested: true,
+      }),
+      Table,
+      TableCell,
+      TableHeader,
+      TableRow,
+      Image,
+      ResizeImage,
+    ],
+    content: ``,
   });
   return (
     <div className="size-full overflow-x-auto bg-[#f9fbfd] px-4 print:px-0 print:bg-white print:overflow-visible">
