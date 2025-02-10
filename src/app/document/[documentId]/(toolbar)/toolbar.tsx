@@ -17,6 +17,8 @@ import { ToolbarButtonProps } from "./toolbar-types";
 import { ToolbarButton } from "./toolbarButton";
 import { useEditorStore } from "@/store/useEditorStore";
 import { Separator } from "@/components/ui/separator";
+import { FontFamilyButton } from "./fontFamilyButton";
+import { HeadingLevelButton } from "./headingLevelButton";
 
 export const Toolbar: React.FC = () => {
   const { editor } = useEditorStore();
@@ -91,13 +93,15 @@ export const Toolbar: React.FC = () => {
   ];
 
   return (
-    <div className="bg-[#f1f4f9] px-2.5 py-0.5 rounded-[24px] min-h-[40px] flex items-center gap-x-0.5 overflow-x-auto">
+    <div className="bg-[#f1f4f9] px-2.5 py-0.5  min-h-[40px] flex items-center gap-x-0.5 overflow-x-auto">
       {sections[0].map((item) => {
         return <ToolbarButton key={item.label} {...item} />;
       })}
 
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
+      <FontFamilyButton />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
+      <HeadingLevelButton />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {sections[1].map((item) => {

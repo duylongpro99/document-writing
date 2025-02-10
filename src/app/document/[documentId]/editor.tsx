@@ -1,17 +1,20 @@
 "use client";
 
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import TaskItem from "@tiptap/extension-task-item";
-import TaskList from "@tiptap/extension-task-list";
+import { useEditorStore } from "@/store/useEditorStore";
+import FontFamily from "@tiptap/extension-font-family";
+import Image from "@tiptap/extension-image";
 import Table from "@tiptap/extension-table";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
-import Image from "@tiptap/extension-image";
-import ResizeImage from "tiptap-extension-resize-image";
-import { useEditorStore } from "@/store/useEditorStore";
+import TaskItem from "@tiptap/extension-task-item";
+import TaskList from "@tiptap/extension-task-list";
 import Underline from "@tiptap/extension-underline";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import ResizeImage from "tiptap-extension-resize-image";
+
+import TextStyle from "@tiptap/extension-text-style";
 
 export const Editor: React.FC = () => {
   const { setEditor } = useEditorStore();
@@ -60,6 +63,8 @@ export const Editor: React.FC = () => {
       Image,
       ResizeImage,
       Underline,
+      FontFamily,
+      TextStyle,
     ],
     content: ``,
   });
