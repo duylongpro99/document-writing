@@ -1,5 +1,7 @@
 "use client";
 
+import { Separator } from "@/components/ui/separator";
+import { useEditorStore } from "@/store/useEditorStore";
 import {
   BoldIcon,
   ItalicIcon,
@@ -7,18 +9,19 @@ import {
   MessageSquarePlusIcon,
   PrinterIcon,
   Redo2Icon,
-  RemoveFormatting,
   RemoveFormattingIcon,
   SpellCheckIcon,
   UnderlineIcon,
   Undo2Icon,
 } from "lucide-react";
-import { ToolbarButtonProps } from "./toolbar-types";
-import { ToolbarButton } from "./toolbarButton";
-import { useEditorStore } from "@/store/useEditorStore";
-import { Separator } from "@/components/ui/separator";
 import { FontFamilyButton } from "./fontFamilyButton";
 import { HeadingLevelButton } from "./headingLevelButton";
+import {
+  HighLightColorButton
+} from "./highlightColorButton";
+import { TextColorButton } from "./textColorButton";
+import { ToolbarButtonProps } from "./toolbar-types";
+import { ToolbarButton } from "./toolbarButton";
 
 export const Toolbar: React.FC = () => {
   const { editor } = useEditorStore();
@@ -107,6 +110,8 @@ export const Toolbar: React.FC = () => {
       {sections[1].map((item) => {
         return <ToolbarButton key={item.label} {...item} />;
       })}
+      <TextColorButton />
+      <HighLightColorButton />
 
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {sections[2].map((item) => {

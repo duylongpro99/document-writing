@@ -13,6 +13,8 @@ import Underline from "@tiptap/extension-underline";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import ResizeImage from "tiptap-extension-resize-image";
+import { Color } from "@tiptap/extension-color";
+import HightLight from "@tiptap/extension-highlight";
 
 import TextStyle from "@tiptap/extension-text-style";
 
@@ -65,6 +67,10 @@ export const Editor: React.FC = () => {
       Underline,
       FontFamily,
       TextStyle,
+      Color,
+      HightLight.configure({
+        multicolor: true,
+      }),
     ],
     content: ``,
   });
