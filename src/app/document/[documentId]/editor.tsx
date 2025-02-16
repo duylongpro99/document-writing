@@ -15,6 +15,7 @@ import StarterKit from "@tiptap/starter-kit";
 import ResizeImage from "tiptap-extension-resize-image";
 import { Color } from "@tiptap/extension-color";
 import HightLight from "@tiptap/extension-highlight";
+import Link from "@tiptap/extension-link";
 
 import TextStyle from "@tiptap/extension-text-style";
 
@@ -70,6 +71,11 @@ export const Editor: React.FC = () => {
       Color,
       HightLight.configure({
         multicolor: true,
+      }),
+      Link.configure({
+        openOnClick: false,
+        autolink: true,
+        defaultProtocol: "https",
       }),
     ],
     content: ``,

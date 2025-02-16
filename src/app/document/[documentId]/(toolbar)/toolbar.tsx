@@ -14,14 +14,12 @@ import {
   UnderlineIcon,
   Undo2Icon,
 } from "lucide-react";
-import { FontFamilyButton } from "./fontFamilyButton";
-import { HeadingLevelButton } from "./headingLevelButton";
-import {
-  HighLightColorButton
-} from "./highlightColorButton";
-import { TextColorButton } from "./textColorButton";
+import { FontFamilyButton } from "./FontFamilyButton";
+import { HeadingLevelButton } from "./HeadingLevelButton";
+import { HighLightColorButton } from "./HighlightColorButton";
+import { TextColorButton } from "./TextColorButton";
 import { ToolbarButtonProps } from "./toolbar-types";
-import { ToolbarButton } from "./toolbarButton";
+import { ToolbarButton } from "./ToolbarButton";
 
 export const Toolbar: React.FC = () => {
   const { editor } = useEditorStore();
