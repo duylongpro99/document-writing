@@ -21,6 +21,7 @@ import { LinkButton } from "./LinkButton";
 import { TextColorButton } from "./TextColorButton";
 import { ToolbarButtonProps } from "./toolbar-types";
 import { ToolbarButton } from "./ToolbarButton";
+import { ImageButton } from "./ImageButton";
 
 export const Toolbar: React.FC = () => {
   const { editor } = useEditorStore();
@@ -106,6 +107,7 @@ export const Toolbar: React.FC = () => {
       <HeadingLevelButton />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       <LinkButton />
+      <ImageButton />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {sections[1].map((item) => {
         return <ToolbarButton key={item.label} {...item} />;
