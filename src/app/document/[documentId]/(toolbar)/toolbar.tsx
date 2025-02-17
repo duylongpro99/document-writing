@@ -14,15 +14,16 @@ import {
   UnderlineIcon,
   Undo2Icon,
 } from "lucide-react";
+import { AlignButton } from "./AlignButton";
 import { FontFamilyButton } from "./FontFamilyButton";
 import { HeadingLevelButton } from "./HeadingLevelButton";
 import { HighLightColorButton } from "./HighlightColorButton";
+import { ImageButton } from "./ImageButton";
 import { LinkButton } from "./LinkButton";
+import { ListButton } from "./ListButton";
 import { TextColorButton } from "./TextColorButton";
 import { ToolbarButtonProps } from "./toolbar-types";
 import { ToolbarButton } from "./ToolbarButton";
-import { ImageButton } from "./ImageButton";
-import { AlignButton } from "./AlignButton";
 
 export const Toolbar: React.FC = () => {
   const { editor } = useEditorStore();
@@ -116,6 +117,7 @@ export const Toolbar: React.FC = () => {
       <TextColorButton />
       <HighLightColorButton />
       <AlignButton />
+      <ListButton />
 
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {sections[2].map((item) => {
