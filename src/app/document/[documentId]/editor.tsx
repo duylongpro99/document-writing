@@ -16,6 +16,7 @@ import ResizeImage from "tiptap-extension-resize-image";
 import { Color } from "@tiptap/extension-color";
 import HightLight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
+import TextAlign from "@tiptap/extension-text-align";
 
 import TextStyle from "@tiptap/extension-text-style";
 
@@ -76,6 +77,9 @@ export const Editor: React.FC = () => {
         openOnClick: false,
         autolink: true,
         defaultProtocol: "https",
+      }),
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
       }),
     ],
     content: ``,

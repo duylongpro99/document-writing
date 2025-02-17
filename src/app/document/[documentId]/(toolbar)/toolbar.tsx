@@ -22,6 +22,7 @@ import { TextColorButton } from "./TextColorButton";
 import { ToolbarButtonProps } from "./toolbar-types";
 import { ToolbarButton } from "./ToolbarButton";
 import { ImageButton } from "./ImageButton";
+import { AlignButton } from "./AlignButton";
 
 export const Toolbar: React.FC = () => {
   const { editor } = useEditorStore();
@@ -114,6 +115,7 @@ export const Toolbar: React.FC = () => {
       })}
       <TextColorButton />
       <HighLightColorButton />
+      <AlignButton />
 
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {sections[2].map((item) => {
