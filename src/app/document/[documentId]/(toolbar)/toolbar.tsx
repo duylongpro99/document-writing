@@ -24,6 +24,7 @@ import { ListButton } from "./ListButton";
 import { TextColorButton } from "./TextColorButton";
 import { ToolbarButtonProps } from "./toolbar-types";
 import { ToolbarButton } from "./ToolbarButton";
+import { FontSizeButton } from "./FontSizeButton";
 
 export const Toolbar: React.FC = () => {
   const { editor } = useEditorStore();
@@ -108,14 +109,16 @@ export const Toolbar: React.FC = () => {
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       <HeadingLevelButton />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
-      <LinkButton />
-      <ImageButton />
+      <FontSizeButton />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {sections[1].map((item) => {
         return <ToolbarButton key={item.label} {...item} />;
       })}
+
       <TextColorButton />
       <HighLightColorButton />
+      <LinkButton />
+      <ImageButton />
       <AlignButton />
       <ListButton />
 

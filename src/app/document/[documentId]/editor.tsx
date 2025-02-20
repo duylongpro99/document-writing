@@ -19,6 +19,7 @@ import Link from "@tiptap/extension-link";
 import TextAlign from "@tiptap/extension-text-align";
 
 import TextStyle from "@tiptap/extension-text-style";
+import { FontSizeExtension } from "@/extensions/font-size";
 
 export const Editor: React.FC = () => {
   const { setEditor } = useEditorStore();
@@ -56,6 +57,7 @@ export const Editor: React.FC = () => {
     },
     extensions: [
       StarterKit,
+      FontSizeExtension,
       TaskList,
       TaskItem.configure({
         nested: true,
