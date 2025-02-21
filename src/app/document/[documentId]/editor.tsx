@@ -1,25 +1,26 @@
 "use client";
 
 import { useEditorStore } from "@/store/useEditorStore";
+import { Color } from "@tiptap/extension-color";
 import FontFamily from "@tiptap/extension-font-family";
+import HightLight from "@tiptap/extension-highlight";
 import Image from "@tiptap/extension-image";
+import Link from "@tiptap/extension-link";
 import Table from "@tiptap/extension-table";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
 import TaskItem from "@tiptap/extension-task-item";
 import TaskList from "@tiptap/extension-task-list";
+import TextAlign from "@tiptap/extension-text-align";
 import Underline from "@tiptap/extension-underline";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import ResizeImage from "tiptap-extension-resize-image";
-import { Color } from "@tiptap/extension-color";
-import HightLight from "@tiptap/extension-highlight";
-import Link from "@tiptap/extension-link";
-import TextAlign from "@tiptap/extension-text-align";
 
-import TextStyle from "@tiptap/extension-text-style";
 import { FontSizeExtension } from "@/extensions/font-size";
+import { LineHeightExtension } from "@/extensions/line-height";
+import TextStyle from "@tiptap/extension-text-style";
 
 export const Editor: React.FC = () => {
   const { setEditor } = useEditorStore();
@@ -58,6 +59,10 @@ export const Editor: React.FC = () => {
     extensions: [
       StarterKit,
       FontSizeExtension,
+      LineHeightExtension.configure({
+        types: ["paragraph", "heading"],
+        defaultLineHeight: "normal",
+      }),
       TaskList,
       TaskItem.configure({
         nested: true,

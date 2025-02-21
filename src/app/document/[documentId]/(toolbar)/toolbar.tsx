@@ -16,15 +16,16 @@ import {
 } from "lucide-react";
 import { AlignButton } from "./AlignButton";
 import { FontFamilyButton } from "./FontFamilyButton";
+import { FontSizeButton } from "./FontSizeButton";
 import { HeadingLevelButton } from "./HeadingLevelButton";
 import { HighLightColorButton } from "./HighlightColorButton";
 import { ImageButton } from "./ImageButton";
+import { LineHeightButton } from "./LineHeightButton";
 import { LinkButton } from "./LinkButton";
 import { ListButton } from "./ListButton";
 import { TextColorButton } from "./TextColorButton";
 import { ToolbarButtonProps } from "./toolbar-types";
 import { ToolbarButton } from "./ToolbarButton";
-import { FontSizeButton } from "./FontSizeButton";
 
 export const Toolbar: React.FC = () => {
   const { editor } = useEditorStore();
@@ -120,6 +121,7 @@ export const Toolbar: React.FC = () => {
       <LinkButton />
       <ImageButton />
       <AlignButton />
+      <LineHeightButton />
       <ListButton />
 
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
