@@ -11,7 +11,7 @@ const INITIAL_MG = 56;
 
 export const Ruler: React.FC<Props> = ({}) => {
   const [leftMg, setLeftMg] = useState(INITIAL_MG);
-  const [rightMg, setRightMg] = useState(PAGE_WIDTH - INITIAL_MG);
+  const [rightMg, setRightMg] = useState(INITIAL_MG);
 
   const [isDraggingLeft, setIsDraggingLeft] = useState(false);
   const [isDraggingRight, setIsDraggingRight] = useState(false);
