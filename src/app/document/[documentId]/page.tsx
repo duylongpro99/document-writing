@@ -1,4 +1,4 @@
-import { Navbar } from "./(navbar)/navbar";
+import { Navbar } from "./(navbar)/Navbar";
 import { Toolbar } from "./(toolbar)/toolbar";
 import { Editor } from "./editor";
 

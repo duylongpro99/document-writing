@@ -69,7 +69,7 @@ export const Ruler: React.FC<Props> = ({}) => {
 
   return (
     <div
-      className="h-6 border-b border-gray-300 flex items-end relative select-none print:hidden"
+      className="w-[816px] mx-auto h-6 border-b border-gray-300 flex items-end relative select-none print:hidden"
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
@@ -77,7 +77,7 @@ export const Ruler: React.FC<Props> = ({}) => {
     >
       <div
         id="ruler-container"
-        className="max-w-[816px] mx-auto w-full h-full relative"
+        className="w-full h-full relative"
       >
         <Marker
           position={leftMg}
