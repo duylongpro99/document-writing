@@ -11,7 +11,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Write Document",
-  description: "Temporary Write Document",
+  description: "Write Document Yourself",
 };
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} `}>
+      <body className={`${inter.className}`}>
         <NuqsAdapter>
           <ConvexClientProvider>{children}</ConvexClientProvider>
         </NuqsAdapter>

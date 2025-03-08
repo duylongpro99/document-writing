@@ -1,3 +1,4 @@
+import { UserButton } from "@clerk/clerk-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SearchInput } from "./SearchInput";
@@ -14,7 +15,7 @@ export const Navbar: React.FC<Props> = ({}) => {
         <h3 className="text-xl"> Docs</h3>
       </div>
       <SearchInput />
-      <div></div>
+      <UserButton />
     </nav>
   );
 };

@@ -8,7 +8,12 @@ import { api } from "../../../convex/_generated/api";
 const Page: React.FC = () => {
   const documents = useQuery(api.document.list);
 
-  if (documents === undefined) return <span>Loading...</span>;
+  if (documents === undefined)
+    return (
+      <>
+        <span>Loading...</span>
+      </>
+    );
 
   return (
     <div className="flex flex-col min-h-screen ">
