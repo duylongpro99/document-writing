@@ -1,4 +1,4 @@
-import { CirclePicker, SketchPicker, type ColorResult } from "react-color";
+import { SketchPicker, type ColorResult } from "react-color";
 
 import {
   DropdownMenu,

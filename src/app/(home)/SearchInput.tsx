@@ -4,10 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useSearchParam } from "@/hooks/use-search-param";
 import { SearchIcon, XIcon } from "lucide-react";
-import { use, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
-type Props = {};
-export const SearchInput: React.FC<Props> = ({}) => {
+export const SearchInput: React.FC = () => {
   const [search, setSearch] = useSearchParam();
   const [value, setValue] = useState<string>(search);
 

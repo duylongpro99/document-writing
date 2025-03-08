@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Extension } from "@tiptap/react";
 import "@tiptap/extension-text-style";
-
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
     fontSize: {

@@ -1,16 +1,14 @@
 import { useEditorStore } from "@/store/useEditorStore";
 import { useState } from "react";
 
-import { CirclePicker } from "react-color";
-
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Link2Icon } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Link2Icon } from "lucide-react";
 
 export const LinkButton: React.FC = () => {
   const { editor } = useEditorStore();
@@ -39,7 +37,7 @@ export const LinkButton: React.FC = () => {
           value={link}
           onChange={(e) => setLink(e.target.value)}
         />
-        <Button onClick={(e) => onClick(link)}>Apply</Button>
+        <Button onClick={() => onClick(link)}>Apply</Button>
       </DropdownMenuContent>
     </DropdownMenu>
   );

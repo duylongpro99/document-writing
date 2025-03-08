@@ -1,21 +1,15 @@
-import { CirclePicker, SketchPicker, type ColorResult } from "react-color";
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 import { useEditorStore } from "@/store/useEditorStore";
 import {
-  AlignCenterIcon,
-  AlignJustifyIcon,
-  AlignLeftIcon,
-  AlignRightIcon,
-  HighlighterIcon,
   ListIcon,
-  ListOrderedIcon,
+  ListOrderedIcon
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export const ListButton: React.FC = () => {
   const { editor } = useEditorStore();

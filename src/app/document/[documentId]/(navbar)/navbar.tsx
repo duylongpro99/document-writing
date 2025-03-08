@@ -3,8 +3,7 @@ import Link from "next/link";
 import { DocumentInput } from "./DocumentInput";
 import { MenuBar } from "./MenuBar";
 
-type Props = {};
-export const Navbar: React.FC<Props> = ({}) => {
+export const Navbar: React.FC = () => {
   return (
     <>
       <nav className="flex items-center justify-between bg-white">

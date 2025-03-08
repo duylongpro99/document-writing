@@ -1,15 +1,13 @@
 import React, { useRef, useState } from "react";
 import { Marker } from "./Marker";
 
-type Props = {};
-
 const makers = Array.from({ length: 83 }, (_, i) => i);
 
 const PAGE_WIDTH = 816;
 const MINIMUM_SPACE = 100;
 const INITIAL_MG = 56;
 
-export const Ruler: React.FC<Props> = ({}) => {
+export const Ruler: React.FC = () => {
   const [leftMg, setLeftMg] = useState(INITIAL_MG);
   const [rightMg, setRightMg] = useState(INITIAL_MG);
 

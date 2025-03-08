@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Extension } from "@tiptap/core";
 
 declare module "@tiptap/core" {

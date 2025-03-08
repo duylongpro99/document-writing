@@ -1,15 +1,14 @@
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { useEditorStore } from "@/store/useEditorStore";
 import { type Level } from "@tiptap/extension-heading";
 import { ChevronDownIcon } from "lucide-react";
 
-type Props = {};
-export const HeadingLevelButton: React.FC<Props> = ({}) => {
+export const HeadingLevelButton: React.FC = () => {
   const { editor } = useEditorStore();
   const headings = [
     { label: "Normal text", value: 0, fontSize: "16px" },
