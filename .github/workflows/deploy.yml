@@ -112,6 +112,20 @@ jobs:
           version: 8
           run_install: false
 
+      # Recreate the .env file in the deploy job
+      - name: Set up environment variables
+        run: |
+          # Create .env file
+          touch .env
+
+          # Add Convex specific variables
+          echo "NEXT_PUBLIC_CONVEX_URL=${{ secrets.NEXT_PUBLIC_CONVEX_URL }}" >> .env
+          echo "CONVEX_DEPLOYMENT=${{ secrets.CONVEX_DEPLOYMENT }}" >> .env
+
+          # Add other public and private environment variables
+          echo "CLERK_SECRET_KEY=${{ secrets.CLERK_SECRET_KEY }}" >> .env
+          echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}" >> .env
+
       # Install Vercel CLI
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
