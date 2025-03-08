@@ -3,10 +3,11 @@ import { Toolbar } from "./(toolbar)/toolbar";
 import { Editor } from "./editor";
 
 interface Props {
-  params: { documentId: string };
+  params: Promise<{ documentId: string }>;
 }
 const Page: React.FC<Props> = async ({ params }) => {
   const { documentId } = await params;
+  console.info(":Document:", documentId);
 
   return (
     <div className="min-h-screen bg-[#fafbfd]">

@@ -1,16 +1,7 @@
 import { useEditorStore } from "@/store/useEditorStore";
 import { useState } from "react";
 
-import { CirclePicker } from "react-color";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ImageIcon, Link2Icon, SearchIcon, UploadIcon } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -19,6 +10,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { ImageIcon, SearchIcon, UploadIcon } from "lucide-react";
 
 export const ImageButton: React.FC = () => {
   const { editor } = useEditorStore();

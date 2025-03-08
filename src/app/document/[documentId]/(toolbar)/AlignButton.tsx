@@ -1,5 +1,3 @@
-import { type ColorResult } from "react-color";
-
 import {
   DropdownMenu,
   DropdownMenuContent,

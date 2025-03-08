@@ -32,8 +32,7 @@ import {
   Undo2Icon,
 } from "lucide-react";
 
-type Props = {};
-export const MenuBar: React.FC<Props> = ({}) => {
+export const MenuBar: React.FC = () => {
   const { editor } = useEditorStore();
 
   const addTable = ({ rows, cols }: { rows: number; cols: number }) => {
@@ -177,6 +176,7 @@ export const MenuBar: React.FC<Props> = ({}) => {
               <MenubarSubContent>
                 {Array.from({ length: 4 }, (_, i) => i).map((i) => (
                   <MenubarItem
+                    key={i}
                     onClick={() =>
                       addTable({
                         cols: i + 1,

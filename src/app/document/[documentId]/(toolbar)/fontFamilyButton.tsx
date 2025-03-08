@@ -7,8 +7,7 @@ import { cn } from "@/lib/utils";
 import { useEditorStore } from "@/store/useEditorStore";
 import { ChevronDownIcon } from "lucide-react";
 
-type Props = {};
-export const FontFamilyButton: React.FC<Props> = ({}) => {
+export const FontFamilyButton: React.FC = () => {
   const { editor } = useEditorStore();
   const fonts = [
     { label: "Arial", value: "Arial" },

@@ -1,9 +1,9 @@
 "use client";
 
 import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 import { Navbar } from "./Navbar";
 import { TemplatesGallery } from "./TemplatesGallery";
-import { api } from "../../../convex/_generated/api";
 
 const Page: React.FC = () => {
   const documents = useQuery(api.document.list);
@@ -24,7 +24,7 @@ const Page: React.FC = () => {
         <TemplatesGallery />
 
         {documents?.map((document) => {
-          return <span>{document.title}</span>;
+          return <span key={document._id}>{document.title}</span>;
         })}
       </div>
     </div>

@@ -10,9 +10,7 @@ import {
 import { DOCUMENT_TEMPLATES } from "@/constants/templates";
 import { cn } from "@/lib/utils";
 
-type Props = {};
-
-export const TemplatesGallery: React.FC<Props> = ({}) => {
+export const TemplatesGallery: React.FC = () => {
   const isCreating = false;
 
   return (
