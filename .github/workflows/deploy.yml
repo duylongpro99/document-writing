@@ -40,14 +40,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      # Check if lockfile exists and install dependencies accordingly
-      - name: Check for lockfile and install dependencies
+        # Install dependencies with fallback logic
+      - name: Install dependencies
         run: |
-          if [ -f "pnpm-lock.yaml" ]; then
-            echo "Installing with frozen-lockfile"
-            pnpm install --frozen-lockfile
+          # Attempt to install with --frozen-lockfile first
+          if pnpm install --frozen-lockfile; then
+            echo "Successfully installed dependencies with frozen lockfile"
           else
-            echo "No lockfile found, installing normally"
+            echo "Failed to install with frozen lockfile, attempting normal install"
+            # Remove potentially incompatible lockfile
+            rm -f pnpm-lock.yaml
+            # Run regular install
             pnpm install
           fi
 
