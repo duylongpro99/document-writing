@@ -59,18 +59,19 @@ jobs:
         run: |
           # Create .env file
           touch .env
-          # Add all secrets that start with "NEXT_PUBLIC_" to .env file
-          for secret in $(compgen -A variable | grep NEXT_PUBLIC_); do
-            echo "$secret=${!secret}" >> .env
-          done
 
-        env:
-          # Add other environment variables as needed
-          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
-          CONVEX_DEPLOYMENT: ${{ secrets.CONVEX_DEPLOYMENT }}
+           # Add Convex specific variables
+          echo "NEXT_PUBLIC_CONVEX_URL=${{ secrets.NEXT_PUBLIC_CONVEX_URL }}" >> .env
+          echo "CONVEX_DEPLOYMENT=${{ secrets.CONVEX_DEPLOYMENT }}" >> .env
+
+          # Add other public and private environment variables
+          echo "CLERK_SECRET_KEY=${{ secrets.CLERK_SECRET_KEY }}" >> .env
+          echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}" >> .env
 
       - name: Build
         run: pnpm build
+        env:
+          NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
 
       # Upload the build artifacts to be used by the deploy job
       - name: Upload build artifacts
