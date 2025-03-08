@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { ExternalLinkIcon, MoreVertical } from "lucide-react";
 import { Id } from "../../../convex/_generated/dataModel";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 type Props = {
   documentId: Id<"documents">;
@@ -14,11 +14,7 @@ type Props = {
   onNewTab: (id: Id<"documents">) => void;
 };
 
-export const DocumentMenu: React.FC<Props> = ({
-  documentId,
-  title,
-  onNewTab,
-}) => {
+export const DocumentMenu: React.FC<Props> = ({ documentId, onNewTab }) => {
   return (
     <>
       <DropdownMenu>
