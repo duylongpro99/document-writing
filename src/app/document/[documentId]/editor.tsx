@@ -21,7 +21,7 @@ import ResizeImage from "tiptap-extension-resize-image";
 import { FontSizeExtension } from "@/extensions/font-size";
 import { LineHeightExtension } from "@/extensions/line-height";
 import TextStyle from "@tiptap/extension-text-style";
-import { Ruler } from "./(ruler)/Ruler";
+import { Ruler } from "./(ruler)/rulers";
 
 export const Editor: React.FC = () => {
   const { setEditor } = useEditorStore();
