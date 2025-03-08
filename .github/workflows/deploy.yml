@@ -112,7 +112,7 @@ jobs:
           version: 8
           run_install: false
 
-      # Recreate the .env file in the deploy job
+      # Create the .env file in the deploy job
       - name: Set up environment variables
         run: |
           # Create .env file
@@ -130,9 +130,13 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-      # Deploy to Vercel
+        # Deploy to Vercel (using env vars directly)
       - name: Deploy to Vercel Production
-        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm --env-file .env
+        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
+          CONVEX_DEPLOYMENT: ${{ secrets.CONVEX_DEPLOYMENT }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
