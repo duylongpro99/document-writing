@@ -1,20 +1,19 @@
 import { TableCell, TableRow } from "@/components/ui/table";
-import {
-    Building2Icon,
-    CircleUserIcon,
-    FileIcon,
-    MoreVertical,
-} from "lucide-react";
+import { Building2Icon, CircleUserIcon, FileIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
-import { Doc } from "../../../convex/_generated/dataModel";
+import { Doc, Id } from "../../../convex/_generated/dataModel";
+import { DocumentMenu } from "./document-menu";
 
 type Props = {
   document: Doc<"documents">;
 };
 
 export const DocumentRow: React.FC<Props> = ({ document }) => {
+  const onNewTab = (id: Id<"documents">) => {
+    window.open(`/document/${id}`, "_blank");
+  };
+
   return (
     <TableRow className="cursor-pointer">
       <TableCell className="w-[50px]">
@@ -35,9 +34,11 @@ export const DocumentRow: React.FC<Props> = ({ document }) => {
       </TableCell>
 
       <TableCell className="flex ml-auto justify-end">
-        <Button variant={"ghost"} size={"icon"} className="rounded-full">
-          <MoreVertical className="size-4" />
-        </Button>
+        <DocumentMenu
+          documentId={document._id}
+          title={document.title}
+          onNewTab={onNewTab}
+        />
       </TableCell>
     </TableRow>
   );
