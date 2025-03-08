@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { DocumentInput } from "./DocumentInput";
-import { MenuBar } from "./MenuBar";
+import { DocumentInput } from "./document-input";
+import { MenuBar } from "./menu-bar";
 
 export const Navbar: React.FC = () => {
   return (

@@ -14,18 +14,18 @@ import {
   UnderlineIcon,
   Undo2Icon,
 } from "lucide-react";
-import { AlignButton } from "./AlignButton";
-import { FontFamilyButton } from "./FontFamilyButton";
-import { FontSizeButton } from "./FontSizeButton";
-import { HeadingLevelButton } from "./HeadingLevelButton";
-import { HighLightColorButton } from "./HighlightColorButton";
-import { ImageButton } from "./ImageButton";
-import { LineHeightButton } from "./LineHeightButton";
-import { LinkButton } from "./LinkButton";
-import { ListButton } from "./ListButton";
-import { TextColorButton } from "./TextColorButton";
+import { AlignButton } from "./align-button";
+import { FontFamilyButton } from "./font-family-button";
+import { FontSizeButton } from "./font-size-button";
+import { HeadingLevelButton } from "./heading-level-button";
+import { HighLightColorButton } from "./highlight-color-button";
+import { ImageButton } from "./image-button";
+import { LineHeightButton } from "./line-height-button";
+import { LinkButton } from "./link-button";
+import { ListButton } from "./list-button";
+import { TextColorButton } from "./text-color-button";
+import { ToolbarButton } from "./toolbar-button";
 import { ToolbarButtonProps } from "./toolbar-types";
-import { ToolbarButton } from "./ToolbarButton";
 
 export const Toolbar: React.FC = () => {
   const { editor } = useEditorStore();

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Marker } from "./Marker";
+import { Marker } from "./markers";
 
 const makers = Array.from({ length: 83 }, (_, i) => i);
 
@@ -73,10 +73,7 @@ export const Ruler: React.FC = () => {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
-      <div
-        id="ruler-container"
-        className="w-full h-full relative"
-      >
+      <div id="ruler-container" className="w-full h-full relative">
         <Marker
           position={leftMg}
           isLeft={true}
