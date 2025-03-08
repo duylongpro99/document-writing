@@ -40,8 +40,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      # Check if lockfile exists and install dependencies accordingly
+      - name: Check for lockfile and install dependencies
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            echo "Installing with frozen-lockfile"
+            pnpm install --frozen-lockfile
+          else
+            echo "No lockfile found, installing normally"
+            pnpm install
+          fi
 
         # Set up environment variables from GitHub secrets
       - name: Set up environment variables
@@ -104,7 +112,7 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-     # Deploy to Vercel
+      # Deploy to Vercel
       - name: Deploy to Vercel Production
         run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm --env-file .env
         env:
