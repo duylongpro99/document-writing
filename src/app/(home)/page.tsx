@@ -6,11 +6,14 @@ import { api } from "../../../convex/_generated/api";
 import { Navbar } from "./Navbar";
 import { TemplatesGallery } from "./TemplatesGallery";
 import { DocumentTable } from "./document-table";
+import { useSearchParam } from "@/hooks/use-search-param";
 
 const Page: React.FC = () => {
+  const [search] = useSearchParam();
+
   const { results, loadMore, status } = usePaginatedQuery(
     api.document.list,
-    {},
+    { search },
     { initialNumItems: PAGE_SIZE }
   );
 

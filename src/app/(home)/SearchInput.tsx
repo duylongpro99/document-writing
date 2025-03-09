@@ -18,12 +18,13 @@ export const SearchInput: React.FC = () => {
 
   const onClear = () => {
     setValue("");
+    setSearch("");
     inputRef.current?.blur();
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSearch("");
+    setSearch(value);
     inputRef.current?.blur();
   };
 
