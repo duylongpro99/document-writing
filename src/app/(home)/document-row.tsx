@@ -2,6 +2,7 @@ import { TableCell, TableRow } from "@/components/ui/table";
 import { Building2Icon, CircleUserIcon, FileIcon } from "lucide-react";
 
 import { format } from "date-fns";
+import { useRouter } from "next/navigation";
 import { Doc, Id } from "../../../convex/_generated/dataModel";
 import { DocumentMenu } from "./document-menu";
 
@@ -10,12 +11,21 @@ type Props = {
 };
 
 export const DocumentRow: React.FC<Props> = ({ document }) => {
+  const router = useRouter();
+
   const onNewTab = (id: Id<"documents">) => {
     window.open(`/document/${id}`, "_blank");
   };
 
+  const onRowClick = (id: string) => {
+    router.push(`/document/${id}`);
+  };
+
   return (
-    <TableRow className="cursor-pointer">
+    <TableRow
+      className="cursor-pointer"
+      onClick={() => onRowClick(document._id)}
+    >
       <TableCell className="w-[50px]">
         <FileIcon className="size-6" />
       </TableCell>

@@ -1,4 +1,4 @@
-import { UserButton } from "@clerk/clerk-react";
+import { OrganizationSwitcher, UserButton } from "@clerk/clerk-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SearchInput } from "./SearchInput";
@@ -14,7 +14,15 @@ export const Navbar: React.FC = () => {
         <h3 className="text-xl"> Docs</h3>
       </div>
       <SearchInput />
-      <UserButton />
+      <div className="flex gap-3 items-center pl-6">
+        <OrganizationSwitcher
+          afterCreateOrganizationUrl="/"
+          afterLeaveOrganizationUrl="/"
+          afterSelectOrganizationUrl="/"
+          afterSelectPersonalUrl="/"
+        />
+        <UserButton />
+      </div>
     </nav>
   );
 };
