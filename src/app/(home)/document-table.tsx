@@ -1,11 +1,13 @@
+import { Button } from "@/components/ui/button";
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
+import { PAGE_SIZE } from "@/constants/pagination";
 import { PaginationStatus } from "convex/react";
 import { LoaderIcon } from "lucide-react";
 import React from "react";
@@ -14,11 +16,15 @@ import { DocumentRow } from "./document-row";
 
 type Props = {
   documents?: Doc<"documents">[];
-  loadMore: (numItems: number) => void;
   status: PaginationStatus;
+  loadMore: (numItems: number) => void;
 };
 
-export const DocumentTable: React.FC<Props> = ({ documents }) => {
+export const DocumentTable: React.FC<Props> = ({
+  documents,
+  status,
+  loadMore,
+}) => {
   return (
     <div className="max-w-screen-xl mx-auto px-16 py-6 flex flex-col gap-5">
       {documents === undefined ? (
@@ -57,6 +63,17 @@ export const DocumentTable: React.FC<Props> = ({ documents }) => {
           )}
         </Table>
       )}
+
+      <div className="flex items-center justify-center">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => loadMore(PAGE_SIZE)}
+          disabled={status !== "CanLoadMore"}
+        >
+          {status === "CanLoadMore" ? "Load more" : "No more to load"}
+        </Button>
+      </div>
     </div>
   );
 };

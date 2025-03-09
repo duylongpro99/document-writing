@@ -47,7 +47,7 @@ export const RenameDialog: React.FC<Props> = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent>
+      <DialogContent onClick={(e) => e.stopPropagation()}>
         <form onSubmit={onSubmit}>
           <DialogHeader>
             <DialogTitle>Rename</DialogTitle>

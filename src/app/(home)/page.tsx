@@ -1,5 +1,6 @@
 "use client";
 
+import { PAGE_SIZE } from "@/constants/pagination";
 import { usePaginatedQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { Navbar } from "./Navbar";
@@ -10,7 +11,7 @@ const Page: React.FC = () => {
   const { results, loadMore, status } = usePaginatedQuery(
     api.document.list,
     {},
-    { initialNumItems: 10 }
+    { initialNumItems: PAGE_SIZE }
   );
 
   return (
