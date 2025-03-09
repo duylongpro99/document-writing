@@ -1,6 +1,9 @@
 "use client";
 
+import { useToast } from "@/hooks/use-toast";
+import { useMutation } from "convex/react";
 import React, { useState } from "react";
+import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
 import {
   AlertDialog,
@@ -13,8 +16,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
-import { useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
 
 type Props = {
   documentId: Id<"documents">;
@@ -23,6 +24,7 @@ type Props = {
 export const RemoveDialog: React.FC<Props> = ({ children, documentId }) => {
   const remove = useMutation(api.document.remove);
   const [isRemoving, setIsRemoving] = useState<boolean>(false);
+  const { toast } = useToast();
 
   return (
     <AlertDialog>
@@ -44,7 +46,22 @@ export const RemoveDialog: React.FC<Props> = ({ children, documentId }) => {
               setIsRemoving(true);
               remove({
                 documentId,
-              }).finally(() => setIsRemoving(false));
+              })
+                .then(() =>
+                  toast({
+                    title: "Document removed!",
+                    variant: "default",
+                  })
+                )
+                .catch(() => {
+                  toast({
+                    title: "Cannot delete!",
+                    description:
+                      "Something went wrong or you don't have permission",
+                    variant: "destructive",
+                  });
+                })
+                .finally(() => setIsRemoving(false));
             }}
           >
             Delete

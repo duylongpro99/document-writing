@@ -15,6 +15,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { Input } from "./ui/input";
+import { useToast } from "@/hooks/use-toast";
 
 type Props = {
   documentId: Id<"documents">;
@@ -30,6 +31,7 @@ export const RenameDialog: React.FC<Props> = ({
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [modifiedTitle, setModifiedTitle] = useState<string>(title);
   const [open, setOpen] = useState<boolean>(false);
+  const { toast } = useToast();
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,7 +40,20 @@ export const RenameDialog: React.FC<Props> = ({
       documentId,
       title: modifiedTitle.trim() || "Untitled",
     })
-      .then(() => setOpen(false))
+      .then(() => {
+        toast({
+          title: "Document renamed!",
+          variant: "default",
+        });
+        setOpen(false);
+      })
+      .catch(() => {
+        toast({
+          title: "Cannot rename!",
+          description: "Something went wrong or you don't have permission",
+          variant: "destructive",
+        });
+      })
       .finally(() => {
         setIsUpdating(false);
       });
