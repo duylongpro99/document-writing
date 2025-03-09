@@ -5,8 +5,6 @@ on:
     types: [published]
 jobs:
   build:
-    if: github.event.pull_request.merged == true
-
     name: "Build Application"
     runs-on: ubuntu-latest
 
