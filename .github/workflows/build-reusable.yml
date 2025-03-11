@@ -54,27 +54,14 @@ jobs:
             # Run regular install
             pnpm install
           fi
-
-      - name: Set up environment variables
-        run: |
-          # Create .env file
-          touch .env
-
-          # Add Convex specific variables
-          echo "NEXT_PUBLIC_CONVEX_URL=${{ secrets.NEXT_PUBLIC_CONVEX_URL }}" >> .env
-          echo "CONVEX_DEPLOYMENT=${{ secrets.CONVEX_DEPLOYMENT }}" >> .env
-
-          # Add other public and private environment variables
-          echo "CLERK_SECRET_KEY=${{ secrets.CLERK_SECRET_KEY }}" >> .env
-          echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}" >> .env
-
-          # Liveblocks secret key:
-          echo "LIVE_BLOCK_SECRET_API_KEY=${{secrets.LIVE_BLOCK_SECRET_API_KEY}}" >> .env
-
       - name: Build
         id: build_step  # Added this ID which is referenced in the outputs
         env:
           NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
+          CONVEX_DEPLOYMENT: ${{ secrets.CONVEX_DEPLOYMENT }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          # Liveblocks secret key:
           LIVE_BLOCK_SECRET_API_KEY: ${{ secrets.LIVE_BLOCK_SECRET_API_KEY }}
         run: |
           pnpm build

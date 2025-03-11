@@ -36,7 +36,7 @@ export function Room({ children }: { children: ReactNode }) {
         });
       }
     },
-    []
+    [toast]
   );
 
   useEffect(() => {
