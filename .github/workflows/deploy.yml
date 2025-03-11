@@ -5,6 +5,7 @@ on:
     types: [published]
 jobs:
   build:
+    name: Build Application
     uses: './build.yml'
   deploy:
     name: Deploy Application to Vercel
