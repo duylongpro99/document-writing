@@ -3,14 +3,13 @@ name: Build Reusable Steps
 on:
   workflow_call:
     outputs:
-      build_output:
+      build_output:  # Changed from build-output to build_output for consistency
         description: "Build output artifact"
         value: ${{ jobs.build.outputs.build_output }}
 jobs:
   build:
     name: "Build Application"
     runs-on: ubuntu-latest
-
     outputs:
       build_output: ${{ steps.build_step.outputs.result }}
 
@@ -29,7 +28,7 @@ jobs:
           version: 8
           run_install: false
 
-      - name: Get pnpm  store directory
+      - name: Get pnpm store directory
         id: pnpm-cache
         shell: bash
         run: |
@@ -43,7 +42,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-        # Install dependencies with fallback logic
       - name: Install dependencies
         run: |
           # Attempt to install with --frozen-lockfile first
@@ -57,13 +55,12 @@ jobs:
             pnpm install
           fi
 
-        # Set up environment variables from GitHub secrets
       - name: Set up environment variables
         run: |
           # Create .env file
           touch .env
 
-           # Add Convex specific variables
+          # Add Convex specific variables
           echo "NEXT_PUBLIC_CONVEX_URL=${{ secrets.NEXT_PUBLIC_CONVEX_URL }}" >> .env
           echo "CONVEX_DEPLOYMENT=${{ secrets.CONVEX_DEPLOYMENT }}" >> .env
 
@@ -75,11 +72,13 @@ jobs:
           echo "LIVE_BLOCK_SECRET_API_KEY=${{secrets.LIVE_BLOCK_SECRET_API_KEY}}" >> .env
 
       - name: Build
-        run: pnpm build
+        id: build_step  # Added this ID which is referenced in the outputs
+        run: |
+          pnpm build
+          echo "result=success" >> $GITHUB_OUTPUT
         env:
           NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
 
-      # Upload the build artifacts to be used by the deploy job
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:

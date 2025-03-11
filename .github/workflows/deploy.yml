@@ -6,12 +6,12 @@ on:
 jobs:
   build:
     name: Build Application
-    uses: ./build-reusable.yml
+    uses: ./.github/workflows/build-reusable.yml
 
   deploy:
     name: Deploy Application to Vercel
     runs-on: ubuntu-latest
-    needs: call-build-steps
+    needs: build
     environment: production
     steps:
       - name: Checkout Code
