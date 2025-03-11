@@ -4,9 +4,9 @@ on:
   release:
     types: [published]
 jobs:
-  build:
-    name: Build Application
-    uses: './build.yml'
+  call-build-steps:
+    uses: ./build-reusable.yml
+
   deploy:
     name: Deploy Application to Vercel
     runs-on: ubuntu-latest
