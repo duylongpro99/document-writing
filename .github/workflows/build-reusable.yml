@@ -76,8 +76,8 @@ jobs:
         run: |
           pnpm build
           echo "result=success" >> $GITHUB_OUTPUT
-        env:
-          NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
+        # env:
+        #   NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
