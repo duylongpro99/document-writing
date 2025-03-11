@@ -123,6 +123,9 @@ jobs:
           echo "CLERK_SECRET_KEY=${{ secrets.CLERK_SECRET_KEY }}" >> .env
           echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}" >> .env
 
+          # Liveblocks secret key:
+          echo "LIVE_BLOCK_SECRET_API_KEY=${{secrets.LIVE_BLOCK_SECRET_API_KEY}}" >> .env
+
       # Install Vercel CLI
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
