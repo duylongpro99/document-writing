@@ -5,6 +5,10 @@ import { Inter } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "./globals.css";
 
+import "@liveblocks/react-ui/styles.css";
+import "@liveblocks/react-tiptap/styles.css";
+import "./globals.css";
+
 const inter = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],

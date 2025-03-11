@@ -20,11 +20,15 @@ import ResizeImage from "tiptap-extension-resize-image";
 
 import { FontSizeExtension } from "@/extensions/font-size";
 import { LineHeightExtension } from "@/extensions/line-height";
+import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 import TextStyle from "@tiptap/extension-text-style";
 import { Ruler } from "./(ruler)/rulers";
+import { Threads } from "./threads";
 
 export const Editor: React.FC = () => {
   const { setEditor } = useEditorStore();
+  const liveblocks = useLiveblocksExtension();
+
   const editor = useEditor({
     immediatelyRender: false,
     onCreate: ({ editor }) => {
@@ -59,7 +63,9 @@ export const Editor: React.FC = () => {
       },
     },
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        history: false,
+      }),
       FontSizeExtension,
       LineHeightExtension.configure({
         types: ["paragraph", "heading"],
@@ -90,6 +96,7 @@ export const Editor: React.FC = () => {
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
+      liveblocks,
     ],
     content: ``,
   });
@@ -99,6 +106,7 @@ export const Editor: React.FC = () => {
       <Ruler />
       <div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0">
         <EditorContent editor={editor} />
+        <Threads editor={editor} />
       </div>
     </div>
   );

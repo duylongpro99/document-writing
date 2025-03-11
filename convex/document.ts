@@ -80,7 +80,10 @@ export const remove = mutation({
       | string
       | undefined;
 
-    if (doc.ownerId !== user.subject && doc.organizationId !== organizationId)
+    if (
+      doc.ownerId !== user.subject &&
+      !!(doc.organizationId && doc.organizationId !== organizationId)
+    )
       throw new ConvexError("Unauthorized");
 
     return await ctx.db.delete(args.documentId);
@@ -100,9 +103,29 @@ export const update = mutation({
       | string
       | undefined;
 
-    if (doc.ownerId !== user.subject && doc.organizationId !== organizationId)
+    if (
+      doc.ownerId !== user.subject &&
+      !!(doc.organizationId && doc.organizationId !== organizationId)
+    )
       throw new ConvexError("Unauthorized");
 
     return await ctx.db.patch(args.documentId, { title: args.title });
+  },
+});
+
+export const get = query({
+  args: { id: v.id("documents"), ignoreAuth: v.optional(v.boolean()) },
+  handler: async (ctx, { id, ignoreAuth }) => {
+    if (!ignoreAuth) {
+      const user = await ctx.auth.getUserIdentity();
+      if (!user) throw new ConvexError("Unauthorized");
+    }
+
+    const doc = await ctx.db.get(id);
+    if (!doc) {
+      throw new ConvexError("Document not found");
+    }
+
+    return doc;
   },
 });
