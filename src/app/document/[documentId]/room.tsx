@@ -13,11 +13,11 @@ import { ReactNode } from "react";
 // import { ReactNode, useEffect, useMemo, useState } from "react";
 // import { getUsers } from "./action";
 
-type User = {
-  id: string;
-  name: string;
-  avatar: string;
-};
+// type User = {
+//   id: string;
+//   name: string;
+//   avatar: string;
+// };
 
 export function Room({ children }: { children: ReactNode }) {
   // const params = useParams<{ documentId: string }>();
