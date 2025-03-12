@@ -75,17 +75,9 @@ jobs:
           printf "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=%s\n" "$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY" >> .env
           printf "LIVE_BLOCK_SECRET_API_KEY=%s\n" "$LIVE_BLOCK_SECRET_API_KEY" >> .env
           
-          # Verify .env file was created (without showing values)
-          echo "Environment file created with variables:"
-          cat .env | sed 's/=.*/=***/' || echo "Failed to create .env file"
           
           # Run the build command
-          pnpm build || {
-            echo "Build failed. Checking environment variables..."
-            # Check if environment variables are set (without showing values)
-            env | grep -E 'NEXT_PUBLIC_|CLERK_|CONVEX_|LIVE_BLOCK_' | sed 's/=.*/=***/'
-            exit 1
-          }
+          pnpm build
           
           # Set output for the workflow
           echo "result=success" >> $GITHUB_OUTPUT
