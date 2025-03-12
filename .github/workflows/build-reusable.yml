@@ -70,9 +70,16 @@ jobs:
           echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY" >> .env
           echo "NEXT_PUBLIC_CONVEX_URL=$NEXT_PUBLIC_CONVEX_URL" >> .env
           echo "CONVEX_DEPLOYMENT=$CONVEX_DEPLOYMENT" >> .env
-        
-          # Build
+          
+          # Build the application with environment variables
+          NEXT_PUBLIC_CONVEX_URL=${NEXT_PUBLIC_CONVEX_URL} \
+          CONVEX_DEPLOYMENT=${CONVEX_DEPLOYMENT} \
+          CLERK_SECRET_KEY=${CLERK_SECRET_KEY} \
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY} \
+          LIVE_BLOCK_SECRET_API_KEY=${LIVE_BLOCK_SECRET_API_KEY} \
           pnpm build
+          
+          # Set output for the workflow
           echo "result=success" >> $GITHUB_OUTPUT
 
       - name: Upload build artifacts
