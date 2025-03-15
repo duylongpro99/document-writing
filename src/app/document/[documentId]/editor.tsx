@@ -18,6 +18,7 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import ResizeImage from "tiptap-extension-resize-image";
 
+import { INITIAL_MG } from "@/constants/measure";
 import { FontSizeExtension } from "@/extensions/font-size";
 import { LineHeightExtension } from "@/extensions/line-height";
 import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
@@ -26,11 +27,18 @@ import TextStyle from "@tiptap/extension-text-style";
 import { Ruler } from "./(ruler)/rulers";
 import { Threads } from "./threads";
 
-export const Editor: React.FC = () => {
+type Props = {
+  initialContent?: string;
+};
+
+export const Editor: React.FC<Props> = ({ initialContent }) => {
   const leftMg = useStorage((root) => root.leftMg);
   const rightMg = useStorage((root) => root.rightMg);
   const { setEditor } = useEditorStore();
-  const liveblocks = useLiveblocksExtension();
+  const liveblocks = useLiveblocksExtension({
+    initialContent,
+    offlineSupport_experimental: true,
+  });
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -60,7 +68,7 @@ export const Editor: React.FC = () => {
     },
     editorProps: {
       attributes: {
-        style: `padding-left: ${leftMg ?? 56}px; padding-right: ${rightMg ?? 56}px;`,
+        style: `padding-left: ${leftMg ?? INITIAL_MG}px; padding-right: ${rightMg ?? INITIAL_MG}px;`,
         class:
           "focus:outline-none print:border-0 bg-white  border-[#c7c7c7] flex flex-col min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text",
       },

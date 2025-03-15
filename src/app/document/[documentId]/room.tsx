@@ -1,6 +1,7 @@
 "use client";
 
 import { FullscreenLoader } from "@/components/fullscreen-loader";
+import { INITIAL_MG } from "@/constants/measure";
 import { useToast } from "@/hooks/use-toast";
 import {
   ClientSideSuspense,
@@ -82,8 +83,8 @@ export function Room({ children }: { children: ReactNode }) {
       <RoomProvider
         id={params.documentId}
         initialStorage={{
-          leftMg: 56,
-          rightMg: 56,
+          leftMg: INITIAL_MG,
+          rightMg: INITIAL_MG,
         }}
       >
         <ClientSideSuspense

@@ -6,13 +6,22 @@ import { api } from "../../../../../convex/_generated/api";
 // Ensure these environment variables are defined in your GitHub Actions workflow
 // Add error handling for missing environment variables
 const convex = new ConvexHttpClient(
-  process.env.NEXT_PUBLIC_CONVEX_URL ?? 
-  (() => { throw new Error("NEXT_PUBLIC_CONVEX_URL environment variable is not defined") })()
+  process.env.NEXT_PUBLIC_CONVEX_URL ??
+    (() => {
+      throw new Error(
+        "NEXT_PUBLIC_CONVEX_URL environment variable is not defined"
+      );
+    })()
 );
 
 const liveblocks = new Liveblocks({
-  secret: process.env.LIVE_BLOCK_SECRET_API_KEY ?? 
-    (() => { throw new Error("LIVE_BLOCK_SECRET_API_KEY environment variable is not defined") })()
+  secret:
+    process.env.LIVE_BLOCK_SECRET_API_KEY ??
+    (() => {
+      throw new Error(
+        "LIVE_BLOCK_SECRET_API_KEY environment variable is not defined"
+      );
+    })(),
 });
 
 export async function POST(req: Request) {

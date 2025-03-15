@@ -1,12 +1,9 @@
+import { INITIAL_MG, MINIMUM_SPACE, PAGE_WIDTH } from "@/constants/measure";
 import { useMutation, useStorage } from "@liveblocks/react/suspense";
 import React, { useRef, useState } from "react";
 import { Marker } from "./markers";
 
 const makers = Array.from({ length: 83 }, (_, i) => i);
-
-const PAGE_WIDTH = 816;
-const MINIMUM_SPACE = 100;
-const INITIAL_MG = 56;
 
 export const Ruler: React.FC = () => {
   const leftMg = useStorage((root) => root.leftMg) ?? INITIAL_MG;

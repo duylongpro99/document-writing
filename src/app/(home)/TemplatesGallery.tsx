@@ -54,7 +54,7 @@ export const TemplatesGallery: React.FC = () => {
                     <button
                       disabled={isCreating}
                       onClick={() => {
-                        onTemplateClick(tpl.label, "");
+                        onTemplateClick(tpl.label, tpl.initialContent);
                       }}
                       style={{
                         backgroundImage: `url(${tpl.imageUrl})`,
