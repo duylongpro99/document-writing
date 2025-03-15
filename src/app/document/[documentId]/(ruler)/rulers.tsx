@@ -1,3 +1,4 @@
+import { useMutation, useStorage } from "@liveblocks/react/suspense";
 import React, { useRef, useState } from "react";
 import { Marker } from "./markers";
 
@@ -8,8 +9,15 @@ const MINIMUM_SPACE = 100;
 const INITIAL_MG = 56;
 
 export const Ruler: React.FC = () => {
-  const [leftMg, setLeftMg] = useState(INITIAL_MG);
-  const [rightMg, setRightMg] = useState(INITIAL_MG);
+  const leftMg = useStorage((root) => root.leftMg) ?? INITIAL_MG;
+  const rightMg = useStorage((root) => root.rightMg) ?? INITIAL_MG;
+  const setLeftMg = useMutation(({ storage }, position) => {
+    storage.set("leftMg", position);
+  }, []);
+
+  const setRightMg = useMutation(({ storage }, position) => {
+    storage.set("rightMg", position);
+  }, []);
 
   const [isDraggingLeft, setIsDraggingLeft] = useState(false);
   const [isDraggingRight, setIsDraggingRight] = useState(false);

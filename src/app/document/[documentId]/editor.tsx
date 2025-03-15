@@ -21,11 +21,14 @@ import ResizeImage from "tiptap-extension-resize-image";
 import { FontSizeExtension } from "@/extensions/font-size";
 import { LineHeightExtension } from "@/extensions/line-height";
 import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
+import { useStorage } from "@liveblocks/react/suspense";
 import TextStyle from "@tiptap/extension-text-style";
 import { Ruler } from "./(ruler)/rulers";
 import { Threads } from "./threads";
 
 export const Editor: React.FC = () => {
+  const leftMg = useStorage((root) => root.leftMg);
+  const rightMg = useStorage((root) => root.rightMg);
   const { setEditor } = useEditorStore();
   const liveblocks = useLiveblocksExtension();
 
@@ -57,7 +60,7 @@ export const Editor: React.FC = () => {
     },
     editorProps: {
       attributes: {
-        style: "padding-left: 56px; padding-right: 56px;",
+        style: `padding-left: ${leftMg ?? 56}px; padding-right: ${rightMg ?? 56}px;`,
         class:
           "focus:outline-none print:border-0 bg-white  border-[#c7c7c7] flex flex-col min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text",
       },
