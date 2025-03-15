@@ -87,7 +87,7 @@ export function Room({ children }: { children: ReactNode }) {
         }}
       >
         <ClientSideSuspense
-          fallback={<FullscreenLoader label="Document loading..." />}
+          fallback={<FullscreenLoader label="Workspace loading..." />}
         >
           {children}
         </ClientSideSuspense>

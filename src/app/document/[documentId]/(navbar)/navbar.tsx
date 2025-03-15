@@ -4,12 +4,17 @@ import { SearchInput } from "@/app/(home)/SearchInput";
 import { OrganizationSwitcher, UserButton } from "@clerk/clerk-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Doc } from "../../../../../convex/_generated/dataModel";
 import { Avatars } from "../avatars";
 import { Inbox } from "../inbox";
 import { DocumentInput } from "./document-input";
 import { MenuBar } from "./menu-bar";
 
-export const Navbar: React.FC = () => {
+type Props = {
+  document: Doc<"documents">;
+};
+
+export const Navbar: React.FC<Props> = ({ document }) => {
   return (
     <>
       <nav className="flex items-center justify-between bg-white">
@@ -23,8 +28,8 @@ export const Navbar: React.FC = () => {
             />
           </Link>
           <div className="flex flex-col">
-            <DocumentInput />
-            <MenuBar />
+            <DocumentInput title={document.title} id={document._id} />
+            <MenuBar data={document} />
           </div>
         </div>
 

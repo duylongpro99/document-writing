@@ -31,8 +31,13 @@ import {
   UnderlineIcon,
   Undo2Icon,
 } from "lucide-react";
+import { Doc } from "../../../../../convex/_generated/dataModel";
 
-export const MenuBar: React.FC = () => {
+type Props = {
+  data: Doc<"documents">;
+};
+
+export const MenuBar: React.FC<Props> = ({ data }) => {
   const { editor } = useEditorStore();
 
   const addTable = ({ rows, cols }: { rows: number; cols: number }) => {
@@ -63,7 +68,7 @@ export const MenuBar: React.FC = () => {
       type: "application/json",
     });
 
-    onDownload(blob, "document.json");
+    onDownload(blob, `${data.title}.json`);
   };
 
   const onSaveHTML = () => {
@@ -74,7 +79,7 @@ export const MenuBar: React.FC = () => {
       type: "text/html",
     });
 
-    onDownload(blob, "document.html");
+    onDownload(blob, `${data.title}.html`);
   };
 
   const onSaveText = () => {
@@ -85,7 +90,7 @@ export const MenuBar: React.FC = () => {
       type: "text/plain",
     });
 
-    onDownload(blob, "document.txt");
+    onDownload(blob, `${data.title}.txt`);
   };
 
   return (
