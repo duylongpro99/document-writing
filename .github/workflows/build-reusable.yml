@@ -3,13 +3,19 @@ name: Build Reusable Steps
 on:
   workflow_call:
     outputs:
-      build_output:  # Changed from build-output to build_output for consistency
+      build_output: # Changed from build-output to build_output for consistency
         description: "Build output artifact"
         value: ${{ jobs.build.outputs.build_output }}
 jobs:
   build:
     name: "Build Application"
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
+      CONVEX_DEPLOYMENT: ${{ secrets.CONVEX_DEPLOYMENT }}
+      CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+      LIVE_BLOCK_SECRET_API_KEY: ${{ secrets.LIVE_BLOCK_SECRET_API_KEY }}
     outputs:
       build_output: ${{ steps.build_step.outputs.result }}
 
@@ -55,7 +61,7 @@ jobs:
             pnpm install
           fi
       - name: Build
-        id: build_step  # Added this ID which is referenced in the outputs
+        id: build_step # Added this ID which is referenced in the outputs
         env:
           NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
           CONVEX_DEPLOYMENT: ${{ secrets.CONVEX_DEPLOYMENT }}
@@ -63,24 +69,20 @@ jobs:
           NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
           LIVE_BLOCK_SECRET_API_KEY: ${{ secrets.LIVE_BLOCK_SECRET_API_KEY }}
         run: |
-          # Create a clean .env file
-          rm -f .env
-          touch .env
-          
-          # Add each environment variable to .env file
-          # Using printf to avoid issues with special characters
-          printf "NEXT_PUBLIC_CONVEX_URL=%s\n" "$NEXT_PUBLIC_CONVEX_URL" >> .env
-          printf "CONVEX_DEPLOYMENT=%s\n" "$CONVEX_DEPLOYMENT" >> .env
-          printf "CLERK_SECRET_KEY=%s\n" "$CLERK_SECRET_KEY" >> .env
-          printf "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=%s\n" "$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY" >> .env
-          printf "LIVE_BLOCK_SECRET_API_KEY=%s\n" "$LIVE_BLOCK_SECRET_API_KEY" >> .env
-          
-          
+          # Create .env file more efficiently (single operation)
+          cat > .env << EOL
+          NEXT_PUBLIC_CONVEX_URL=${NEXT_PUBLIC_CONVEX_URL}
+          CONVEX_DEPLOYMENT=${CONVEX_DEPLOYMENT}
+          CLERK_SECRET_KEY=${CLERK_SECRET_KEY}
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+          LIVE_BLOCK_SECRET_API_KEY=${LIVE_BLOCK_SECRET_API_KEY}
+          EOL
+
           # Run the build command
-          pnpm build
-          
-          # Set output for the workflow
-          echo "result=success" >> $GITHUB_OUTPUT
+          pnpm build || exit 1  # Add error handling
+
+          # Set output for the workflow more securely
+          echo "result=success" >> "$GITHUB_OUTPUT"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
