@@ -1,7 +1,8 @@
 "use client";
 
+import { Separator } from "@/components/ui/separator";
 import { useOthers, useSelf } from "@liveblocks/react/suspense";
-import { Avatars } from "./avatars";
+import { Avatar } from "./avatar";
 
 export const AvatarsStack: React.FC = () => {
   const users = useOthers();
@@ -10,13 +11,22 @@ export const AvatarsStack: React.FC = () => {
   if (!users.length) return <></>;
   return (
     <>
-      <div className="items-center">
+      <div className="flex items-center">
         {currentUser && (
           <div className="relative ml-2">
-            <Avatars name="You" src={currentUser.info.avatar} />
+            <Avatar name="You" src={currentUser.info.avatar} />
           </div>
         )}
+
+        <div className="flex">
+          {users.map(({ connectionId, info }) => {
+            return (
+              <Avatar key={connectionId} name={info.name} src={info.avatar} />
+            );
+          })}
+        </div>
       </div>
+      <Separator orientation="vertical" className="h-6" />
     </>
   );
 };
