@@ -29,6 +29,7 @@ export const RenameDialog: React.FC<Props> = ({
 }) => {
   const rename = useMutation(api.document.update);
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
+  
   const [modifiedTitle, setModifiedTitle] = useState<string>(title);
   const [open, setOpen] = useState<boolean>(false);
   const { toast } = useToast();

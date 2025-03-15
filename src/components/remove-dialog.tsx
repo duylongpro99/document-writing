@@ -2,6 +2,7 @@
 
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "convex/react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
@@ -25,6 +26,7 @@ export const RemoveDialog: React.FC<Props> = ({ children, documentId }) => {
   const remove = useMutation(api.document.remove);
   const [isRemoving, setIsRemoving] = useState<boolean>(false);
   const { toast } = useToast();
+  const router = useRouter();
 
   return (
     <AlertDialog>
@@ -47,12 +49,13 @@ export const RemoveDialog: React.FC<Props> = ({ children, documentId }) => {
               remove({
                 documentId,
               })
-                .then(() =>
+                .then(() => {
                   toast({
                     title: "Document removed!",
                     variant: "default",
-                  })
-                )
+                  });
+                  router.push("/");
+                })
                 .catch(() => {
                   toast({
                     title: "Cannot delete!",

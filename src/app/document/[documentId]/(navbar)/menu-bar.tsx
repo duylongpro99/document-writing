@@ -32,13 +32,43 @@ import {
   Undo2Icon,
 } from "lucide-react";
 import { Doc } from "../../../../../convex/_generated/dataModel";
+import { useMutation } from "convex/react";
+import { api } from "../../../../../convex/_generated/api";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
+import { RemoveDialog } from "@/components/remove-dialog";
+import { RenameDialog } from "@/components/rename-dialog";
 
 type Props = {
   data: Doc<"documents">;
 };
 
 export const MenuBar: React.FC<Props> = ({ data }) => {
+  const router = useRouter();
   const { editor } = useEditorStore();
+  const mutation = useMutation(api.document.create);
+  const { toast } = useToast();
+
+  const onNewDoc = () => {
+    mutation({
+      title: "Untitled",
+      initialContent: "",
+    })
+      .then((id) => {
+        toast({
+          title: "New document created",
+          description: "New document has been created.",
+        });
+        router.push(`/document/${id}`);
+      })
+      .catch(() => {
+        toast({
+          title: "Document creation failed",
+          description: "Your document could not be created",
+          variant: "destructive",
+        });
+      });
+  };
 
   const addTable = ({ rows, cols }: { rows: number; cols: number }) => {
     editor
@@ -129,22 +159,32 @@ export const MenuBar: React.FC<Props> = ({ data }) => {
               </MenubarSubContent>
             </MenubarSub>
 
-            <MenubarItem>
+            <MenubarItem onClick={onNewDoc}>
               <FilePlusIcon className="size-4 mr-2" />
               New Document
             </MenubarItem>
 
             <MenubarSeparator />
 
-            <MenubarItem>
-              <FilePenIcon className="size-4 mr-2" />
-              Rename
-            </MenubarItem>
+            <RenameDialog documentId={data._id} title={data.title}>
+              <MenubarItem
+                onClick={(e) => e.stopPropagation()}
+                onSelect={(e) => e.preventDefault()}
+              >
+                <FilePenIcon className="size-4 mr-2" />
+                Rename
+              </MenubarItem>
+            </RenameDialog>
 
-            <MenubarItem>
-              <TrashIcon className="size-4 mr-2" />
-              Remove
-            </MenubarItem>
+            <RemoveDialog documentId={data._id}>
+              <MenubarItem
+                onClick={(e) => e.stopPropagation()}
+                onSelect={(e) => e.preventDefault()}
+              >
+                <TrashIcon className="size-4 mr-2" />
+                Remove
+              </MenubarItem>
+            </RemoveDialog>
 
             <MenubarSeparator />
             <MenubarItem onClick={() => window?.print()}>

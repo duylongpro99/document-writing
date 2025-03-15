@@ -54,7 +54,13 @@ export const DocumentMenu: React.FC<Props> = ({
               Remove
             </DropdownMenuItem>
           </RemoveDialog>
-          <DropdownMenuItem onClick={() => onNewTab(documentId)}>
+          <DropdownMenuItem
+            onSelect={(e) => e.preventDefault()}
+            onClick={(e) => {
+              e.stopPropagation();
+              onNewTab(documentId);
+            }}
+          >
             <ExternalLinkIcon className="size-4 mr-2" />
             Open in a new tab
           </DropdownMenuItem>
