@@ -1,4 +1,9 @@
 # Thanks AI support me to write readme - haha
+# Wanna try? 
+  Go
+  ```markdown
+  [https://v0-new-project-d2azd6z3jcc.vercel.app/](https://v0-new-project-d2azd6z3jcc.vercel.app/)
+  ```
 # Write Document - Collaborative Document Editor
 
 A real-time collaborative document editor built with modern web technologies, offering a seamless writing and collaboration experience.
