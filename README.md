@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Write Document - Collaborative Document Editor
 
-## Getting Started
+A real-time collaborative document editor built with modern web technologies, offering a seamless writing and collaboration experience.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Frontend
+- **Next.js** - React framework for production-grade applications
+- **TypeScript** - For type-safe code
+- **Radix UI** - Headless UI components for building accessible interfaces
+- **TipTap** - Rich text editor framework
+- **Clerk** - Authentication and user management
+- **Liveblocks** - Real-time collaboration features
+- **Convex** - Backend and real-time data synchronization
+
+### UI/UX
+- **Tailwind CSS** - Utility-first CSS framework
+- **Radix UI Components** - Including:
+  - Accordion
+  - Alert Dialog
+  - Avatar
+  - Carousel
+  - Dialog
+  - Dropdown Menu
+  - And more...
+
+## Workflow
+
+### Development
+1. Local Development
+   ```bash
+   npm run dev
+
+   npm run build
+   npm run start
+   
+
+
+## GitHub Workflow
+
+The repository uses GitHub Actions for automated builds with two main workflow files:
+
+### Main Build Workflow (`build.yml`)
+Located in `.github/workflows/build.yml`, this workflow triggers when pull requests are closed on the main branch.
+
+```yaml
+name: Build Application
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The workflow uses the following secret environment variables for secure deployment:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    NEXT_PUBLIC_CONVEX_URL
+    CONVEX_DEPLOYMENT
+    CLERK_SECRET_KEY
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+    LIVE_BLOCK_SECRET_API_KEY
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    
+Reusable Build Steps ( build-reusable.yml)
+Located in .github/workflows/build-reusable.yml, this contains the core build logic:
 
-## Learn More
+Environment Setup :
 
-To learn more about Next.js, take a look at the following resources:
+Runs on Ubuntu latest
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Uses Node.js version 20
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Sets up pnpm package manager (version 8)
 
-## Deploy on Vercel
+Build Process :
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Checks out the code
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Configures Node.js environment
+
+Installs dependencies using pnpm
+
+Environment Variables : All sensitive information is handled through GitHub Secrets and passed as environment variables during the build process.
+
+Usage
+The workflow automatically triggers when:
+
+A pull request is closed on the main branch
+
+The build process is reusable and can be called from other workflows
+
+To manually trigger the workflow, you can:
+
+# Push changes to trigger the workflow
+git push origin main
+
+# Or create and merge a pull request to main branch
+
+This explanation provides a clear overview of your GitHub Actions workflow setup, including the trigger conditions, environment configuration, and build process. You can add this to your README.md to help other developers understand your CI/CD pipeline.

@@ -4,6 +4,8 @@ import { SearchInput } from "@/app/(home)/SearchInput";
 import { OrganizationSwitcher, UserButton } from "@clerk/clerk-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Avatars } from "../avatars";
+import { Inbox } from "../inbox";
 import { DocumentInput } from "./document-input";
 import { MenuBar } from "./menu-bar";
 
@@ -28,6 +30,8 @@ export const Navbar: React.FC = () => {
 
         <SearchInput />
         <div className="flex gap-3 items-center pl-6">
+          <Avatars />
+          <Inbox />
           <OrganizationSwitcher
             afterCreateOrganizationUrl="/"
             afterLeaveOrganizationUrl="/"
