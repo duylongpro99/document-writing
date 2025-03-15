@@ -7,5 +7,4 @@ on:
 jobs:
   build:
     if: github.event.pull_request.merged == true
-    name: Build Application
     uses: ./.github/workflows/build-reusable.yml
