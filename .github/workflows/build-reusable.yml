@@ -1,4 +1,5 @@
-name: Build Reusable Steps
+name: Build
+run-name: ${{ github.actor }} is building the application
 
 on:
   workflow_call:
@@ -7,16 +8,16 @@ on:
         description: "Build output artifact"
         value: ${{ jobs.build.outputs.build_output }}
     secrets:
-        NEXT_PUBLIC_CONVEX_URL:
-          required: true
-        CONVEX_DEPLOYMENT:
-          required: true
-        CLERK_SECRET_KEY:
-          required: true
-        NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
-          required: true
-        LIVE_BLOCK_SECRET_API_KEY:
-          required: true
+      NEXT_PUBLIC_CONVEX_URL:
+        required: true
+      CONVEX_DEPLOYMENT:
+        required: true
+      CLERK_SECRET_KEY:
+        required: true
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
+        required: true
+      LIVE_BLOCK_SECRET_API_KEY:
+        required: true
 jobs:
   build:
     name: "Build"
