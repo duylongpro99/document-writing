@@ -7,6 +7,12 @@ jobs:
   build:
     name: Build Application
     uses: ./.github/workflows/build-reusable.yml
+    secrets:
+      NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
+      CONVEX_DEPLOYMENT: ${{ secrets.CONVEX_DEPLOYMENT }}
+      CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+      LIVE_BLOCK_SECRET_API_KEY: ${{ secrets.LIVE_BLOCK_SECRET_API_KEY }}
 
   deploy:
     name: Deploy Application to Vercel

@@ -1,12 +1,9 @@
 name: Build Application
 
 on:
-  # pull_request:
-  #   types: [closed]
-  #   branches: [main]
-  push:
-    branches:
-      - development
+  pull_request:
+    types: [closed]
+    branches: [main]
 jobs:
   build:
     # if: github.event.pull_request.merged == true
