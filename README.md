@@ -1,4 +1,4 @@
-# Thank you to AI support me to write readme - haha
+# Thanks AI support me to write readme - haha
 # Write Document - Collaborative Document Editor
 
 A real-time collaborative document editor built with modern web technologies, offering a seamless writing and collaboration experience.
